@@ -21,13 +21,16 @@ fn main() {
     let output = thread::spawn(move || loop {
         // 入力を受け取る
         let data = rx.recv().unwrap();
+
+        // 改行を除去し、スペースで区切る
         let data = if let Some(len) = data.find('\n') {
             &data[..len]
         } else {
             data.as_str()
         };
+        let mut data= data.split(" ");
 
-        let mut data: std::str::Split<'_, &str> = data.split(" ");
+        // コマンドを実行
         if let Some(cmd) = data.next() {
             if run(cmd, data) {
                 break;

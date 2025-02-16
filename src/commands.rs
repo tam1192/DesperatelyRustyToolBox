@@ -9,8 +9,10 @@ mod help;
 
 type Args<'a> = Split<'a, &'a str>;
 
+/// コマンドランナー
+/// 戻り値はプログラムを終了させるかどうか
 pub fn run(cmd: &str, args: Args) -> bool {
-    match cmd {
+    let is_exit = match cmd {
         "/ping" => {
             ping::run(args);
             false
@@ -43,5 +45,6 @@ pub fn run(cmd: &str, args: Args) -> bool {
             false
         }
         _ => false
-    }
+    };
+    is_exit
 }
