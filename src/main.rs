@@ -4,6 +4,8 @@ use std::sync::mpsc;
 use std::thread::sleep;
 use std::{io, mem, thread, time};
 
+mod commands;
+
 fn main() {
     let start_time = time::Instant::now();
 
