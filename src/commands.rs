@@ -1,6 +1,10 @@
+use std::str::Split;
+
 mod exec;
 
-fn run(cmd: &str, args: &[&str]) {
+type Args<'a> = Split<'a, &'a str>;
+
+fn run(cmd: &str, args: Args) {
     match cmd {
         "/exec" => exec::run(args),
         _ if cmd.len() > 0 => {

@@ -1,7 +1,9 @@
 use std::process::Stdio;
 
-pub fn run(args: &[&str]) {
-    let mut data = args.iter();
+use super::Args;
+
+pub fn run(args: Args) {
+    let mut data = args;
     if let Some(cmd) = data.next() {
         let mut cmd = std::process::Command::new(cmd);
         for args in data {
