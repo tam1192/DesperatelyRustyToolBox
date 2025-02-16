@@ -3,14 +3,20 @@ use std::str::Split;
 mod exec;
 mod say;
 mod time;
+mod ping;
+mod counter;
 
 type Args<'a> = Split<'a, &'a str>;
 
 pub fn run(cmd: &str, args: Args) -> bool {
     match cmd {
+        "/ping" => {
+            ping::run(args);
+            false
+        },
         "/stop" => {
             true
-        }
+        },
         "/exec" => {
             exec::run(args);
             false
@@ -21,6 +27,10 @@ pub fn run(cmd: &str, args: Args) -> bool {
         }
         "/say" => {
             say::run(args);
+            false
+        },
+        "/counter" => {
+            counter::run(args);
             false
         },
         _ if cmd.len() > 0 => {
