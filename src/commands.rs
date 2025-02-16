@@ -4,12 +4,19 @@ mod exec;
 
 type Args<'a> = Split<'a, &'a str>;
 
-fn run(cmd: &str, args: Args) {
+pub fn run(cmd: &str, args: Args) -> bool {
     match cmd {
-        "/exec" => exec::run(args),
+        "/stop" => {
+            true
+        }
+        "/exec" => {
+            exec::run(args);
+            false
+        },
         _ if cmd.len() > 0 => {
             eprintln!("{} is bad command", cmd);
+            false
         }
-        _ => {}
+        _ => false
     }
 }
