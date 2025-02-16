@@ -1,6 +1,7 @@
 use std::str::Split;
 
 mod exec;
+mod say;
 
 type Args<'a> = Split<'a, &'a str>;
 
@@ -11,6 +12,10 @@ pub fn run(cmd: &str, args: Args) -> bool {
         }
         "/exec" => {
             exec::run(args);
+            false
+        },
+        "/say" => {
+            say::run(args);
             false
         },
         _ if cmd.len() > 0 => {
