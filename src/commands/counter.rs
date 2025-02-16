@@ -1,6 +1,8 @@
+use std::{thread::sleep, time};
+
 use super::Args;
 
-pub fn run(args: Args) {
+pub fn run(mut args: Args) {
     if let Some(counter) = args.next() {
         if let Ok(counter) = counter.parse::<u64>(){
             for count in 0..counter {

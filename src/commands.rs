@@ -5,6 +5,7 @@ mod say;
 mod time;
 mod ping;
 mod counter;
+mod help;
 
 type Args<'a> = Split<'a, &'a str>;
 
@@ -31,6 +32,10 @@ pub fn run(cmd: &str, args: Args) -> bool {
         },
         "/counter" => {
             counter::run(args);
+            false
+        },
+        "/help" => {
+            help::run(args);
             false
         },
         _ if cmd.len() > 0 => {

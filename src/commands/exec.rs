@@ -2,11 +2,10 @@ use std::process::Stdio;
 
 use super::Args;
 
-pub fn run(args: Args) {
-    let mut data = args;
-    if let Some(cmd) = data.next() {
+pub fn run(mut args: Args) {
+    if let Some(cmd) = args.next() {
         let mut cmd = std::process::Command::new(cmd);
-        for args in data {
+        for args in args {
             cmd.arg(args);
         }
         cmd.stdout(Stdio::inherit()).stderr(Stdio::inherit()).stdin(Stdio::inherit());

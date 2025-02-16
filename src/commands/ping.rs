@@ -1,6 +1,5 @@
 use super::Args;
 
-pub fn run(args: Args) {
-    let _ = args;
+pub fn run(mut args: Args) {
     println!("pong!!!");
 }
