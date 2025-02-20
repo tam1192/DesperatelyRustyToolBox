@@ -1,5 +1,7 @@
 use std::str::Split;
 
+use strum_macros::{Display, EnumString};
+
 mod exec;
 mod say;
 mod time;
@@ -8,6 +10,24 @@ mod counter;
 mod help;
 
 type Args<'a> = Split<'a, &'a str>;
+
+#[derive(Debug, EnumString, Display)]
+pub enum Command<'a> {
+    #[strum(serialize = "/ping")]
+    Ping,
+    #[strum(serialize = "/stop")]
+    Stop,
+    #[strum(serialize = "/exec")]
+    Exec(&'a str, &'a [&'a str]),
+    #[strum(serialize = "/time")]
+    Time,
+    #[strum(serialize = "/say")]
+    Say(&'a str),
+    #[strum(serialize = "/counter")]
+    Counter(u32),
+    #[strum(serialize = "/help")]
+    Help,
+}
 
 /// コマンドランナー
 /// 戻り値はプログラムを終了させるかどうか
